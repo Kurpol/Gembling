@@ -11,6 +11,7 @@ std::string random_string(size_t length);
 
 void menu()
 {
+pointer:
 	std::cout << "GEMBLING" << std::endl << std::endl << std::endl;
 	std::cout << "1. Play game" << std::endl;
 	std::cout << "2. Description" << std::endl;
@@ -18,12 +19,16 @@ void menu()
 	std::cout << "Enter the number" << std::endl;
 
 	unsigned short choice = 0;
-	std::cin >> choice;
 
+
+	std::cin >> choice;
+	
 	switch (choice)
 	{
 	case 1:
+		system("cls");
 		game();
+		goto pointer;
 	case 2:
 		std::cout << "Just a simulation of fightning, nothing special. Your Character has health, if health less then 0, your character will die." << std::endl;
 	case 3:
@@ -33,11 +38,13 @@ void menu()
 
 void overlay(Player* player, Game* game)
 {
+pointer:
+	system("cls");
 	std::cout << "Select an action" << std::endl << std::endl << std::endl;
 	std::cout << "1. Take a punch " << std::endl;
 	std::cout << "2. Dodge a hit" << std::endl;
-	std::cout << "3. Try to escape" << std::endl << std::endl;
-	std::cout << "4. Show player information" << std::endl;
+	std::cout << "3. Try to escape" << std::endl ;
+	std::cout << "4. Show player information" << std::endl << std::endl;
 	std::cout << "Enter the number" << std::endl;
 
 	unsigned short choice = 0;
@@ -52,8 +59,17 @@ void overlay(Player* player, Game* game)
 	case 3:
 		
 	case 4:
+		system("cls");
 		player->ShowInfo();
-		std::cout << "that`s all " << std::endl;
+		std::cout << std::endl;
+		std::cout << "that`s all " << std::endl << std::endl;
+		int next = 0;
+		std::cout << "1. Next action" << std::endl;
+		std::cin >> next;
+		if (next == 1)
+		{
+			goto pointer;
+		}
 	}
 }
 
@@ -83,7 +99,7 @@ void game()
 	Player* player = Player::GetPlayer(name);
 	Game* game = Game::StartGame();
 
-	player->ShowInfo();
+	overlay(player, game);
 }
 
 
